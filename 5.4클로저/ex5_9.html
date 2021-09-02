@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // HelloFunc는 greeting변수가 있고, func 프로퍼티로 참조되는 함수를 call() 함수로 호출한다.
+        // func 프로퍼티에 자신이 정의한 함수를 참조시켜 호출할 수 있다. 다만, HelloFunc.prototype.call()을 보면
+        // 알 수 있듯이 자신의 지역 변수인 greeting만을 인자로 사용자가 정의한 함수에 넘긴다.
+        // userFunc() 함수를 정의하여 objHello.func()에 참조시킨 뒤, HelloFunc()의 지역 변수인 greeting을 화면에 출력시킨다.
+
+
+       function HelloFunc(func){
+           this.greeting = "hello";
+       }
+
+       HelloFunc.prototype.call = function(func){
+           func ? func(this.greeting) : this.func(this.greeting);
+       }
+
+       var userFunc = function(greeting){
+           console.log(greeting);
+       }
+
+       var objHello = new HelloFunc();
+       objHello.func = userFunc;
+       objHello.call();
+    </script>
+</body>
+</html>

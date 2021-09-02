@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+     function saySomething(obj, methodName, name){
+         return (function(greeting){
+             return obj[methodName](greeting, name);
+         });
+
+         function newObj(obj, name){
+             obj,func = saySomething(this, "who", name);
+             return obj;
+         }
+
+         newObj.prototype.who = function(greeting, name){
+             console.log(greeting + " " + (name || "everyone"));
+         }
+     }
+    </script>
+</body>
+</html>
